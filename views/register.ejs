@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="css/register.css">
+  <title>SLTIET - Login Form</title>
+  <link rel="icon" type="image/x-icon" href="images/SLTIET.jpg">
+</head>
+<style> </style>
+
+<body>
+  <!-- partial:index.partial.html -->
+
+  <section>
+    <div class="signin">
+      <div class="content">
+        <h2 style="
+              background-color: #ff9100;
+              width: 100%;
+              padding: 5px 9px;
+              border-radius: 5px;
+              color: #fff;
+              text-transform: uppercase;
+            ">
+          Sign In
+        </h2>
+
+        <div class="form">
+          <form action="/register" method="post">
+            <div class="inputBox">
+              <input type="text" name="name" id="name" required /> <i>Student Name</i>
+            </div>
+
+            <div class="inputBox">
+              <input type="tel" name="phone" id="phone" required /> <i>Phone</i>
+            </div>
+            
+            <div class="inputBox">
+              <input type="email" name="email" id="email" required /> <i>Email</i>
+            </div>
+
+            <div class="inputBox">
+              <input type="text" name="institute" id="institute" required /> <i>lnstitute Name</i>
+            </div>
+
+            <div class="inputBox">
+              <input type="text" name="grade" id="grade" required /> <i>Previous Grade ( %  OR  CGPA)</i>
+            </div>
+
+            <div class="inputBox">
+              <input type="submit" value="Login" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- partial -->
+</body>
+
+</html>
