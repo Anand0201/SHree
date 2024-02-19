@@ -52,8 +52,8 @@ section span:hover {
 
 section .signin {
     position: absolute;
-    width: 50vw;
-    height: 50vh;
+    width: 70vw;
+    height: 90vh;
     background: #ffffff;
     z-index: 1000;
     display: flex;
@@ -155,7 +155,7 @@ input[type="submit"]:active {
     opacity: 0.6;
 }
 
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
     section span {
         width: calc(10vw - 2px);
         height: calc(10vw - 2px);
@@ -167,4 +167,4 @@ input[type="submit"]:active {
         width: calc(20vw - 2px);
         height: calc(20vw - 2px);
     }
-}
+} */

@@ -2490,7 +2490,7 @@
                               var checkbox2 = document.getElementById("chek");
 
                               if (checkbox1.checked && checkbox2.checked) {
-                                countDown(3600, "status");
+                                countDown(10, "status");
                                 document.getElementById("exam-start").style.display = "none";
                                 document.getElementById("exam-show").style.display = "block";
 
@@ -2603,7 +2603,7 @@
                                     "exam-show"
                                   ).style.display = "none";
                                   submitCalled = true;
-
+                                  Subquestion()
                                 }
                               }
 
@@ -2625,7 +2625,7 @@
                               <div class="separator" style="clear: both">
                                 <img class="center" style="border: 0;" alt="demo" data-original-height="100"
                                   data-original-width="100" src="images/pngwing.com (3).webp" width="100" />
-                                <p style="text-align: center;">Demo Student</p>
+                                <p style="text-align: center;"> Student</p>
                               </div>
                               <br />
                               <div style="text-align: left;">
@@ -2706,11 +2706,9 @@
                                   <button class="NextQ" onclick="checkAnswer()" type="button">
                                     Select And Next Question
                                   </button>
-                                  <form action="/score" method="post">
                                     <button type="submit" class="SubmitQ" id="Sub" title="Click on Done" onclick="Subquestion()">
                                       Done
                                     </button>
-                                  </form>
 
 
                                   <div style="clear: both"></div>
