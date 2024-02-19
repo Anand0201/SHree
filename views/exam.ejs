@@ -363,7 +363,7 @@
                                 "Which color appears at the top when white light is incident on a glass prism?",
                                 "Violet",
                                 "Indigo",
-                                "",
+                                "Red",
                                 "C"
                               ],
                               [
@@ -964,8 +964,6 @@
                                 "A"
                               ],
                             ];
-
-
 
 
                             //array::ids for 10 buttons which are used for color changing mark for review,save and next.(green,red,purple)
@@ -1602,45 +1600,45 @@
                                 test1.innerHTML +=
                                   "<button class='pal' id='q_80' onclick='q80()'>80</button>&nbsp;";
                                 test2.innerHTML +=
-                                  "<button class='pal' id='q_81' onclick='q81()'>01</button>&nbsp;";
+                                  "<button class='pal' id='q_81' onclick='q81()'>81</button>&nbsp;";
                                 test2.innerHTML +=
-                                  "<button class='pal' id='q_82' onclick='q82()'>02</button>&nbsp;";
+                                  "<button class='pal' id='q_82' onclick='q82()'>82</button>&nbsp;";
                                 test2.innerHTML +=
-                                  "<button class='pal' id='q_83' onclick='q83()'>03</button>&nbsp;";
+                                  "<button class='pal' id='q_83' onclick='q83()'>83</button>&nbsp;";
                                 test2.innerHTML +=
-                                  "<button class='pal' id='q_84' onclick='q84()'>04</button>&nbsp;";
+                                  "<button class='pal' id='q_84' onclick='q84()'>84</button>&nbsp;";
                                 test2.innerHTML +=
-                                  "<button class='pal' id='q_85' onclick='q85()'>05</button>&nbsp;";
+                                  "<button class='pal' id='q_85' onclick='q85()'>85</button>&nbsp;";
                                 test2.innerHTML +=
-                                  "<button class='pal' id='q_86' onclick='q86()'>06</button>&nbsp;";
+                                  "<button class='pal' id='q_86' onclick='q86()'>86</button>&nbsp;";
                                 test2.innerHTML +=
-                                  "<button class='pal' id='q_87' onclick='q87()'>07</button>&nbsp;";
+                                  "<button class='pal' id='q_87' onclick='q87()'>87</button>&nbsp;";
                                 test2.innerHTML +=
-                                  "<button class='pal' id='q_88' onclick='q88()'>08</button>&nbsp;";
+                                  "<button class='pal' id='q_88' onclick='q88()'>88</button>&nbsp;";
                                 test2.innerHTML +=
-                                  "<button class='pal' id='q_89' onclick='q89()'>09</button>&nbsp;";
+                                  "<button class='pal' id='q_89' onclick='q89()'>89</button>&nbsp;";
                                 test2.innerHTML +=
-                                  "<button class='pal' id='q_90' onclick='q90()'>10</button>&nbsp;";
+                                  "<button class='pal' id='q_90' onclick='q90()'>90</button>&nbsp;";
                                 test2.innerHTML +=
-                                  "<button class='pal' id='q_91' onclick='q91()'>11</button>&nbsp;";
+                                  "<button class='pal' id='q_91' onclick='q91()'>91</button>&nbsp;";
                                 test2.innerHTML +=
-                                  "<button class='pal' id='q_92' onclick='q92()'>12</button>&nbsp;";
+                                  "<button class='pal' id='q_92' onclick='q92()'>92</button>&nbsp;";
                                 test2.innerHTML +=
-                                  "<button class='pal' id='q_93' onclick='q93()'>13</button>&nbsp;";
+                                  "<button class='pal' id='q_93' onclick='q93()'>93</button>&nbsp;";
                                 test2.innerHTML +=
-                                  "<button class='pal' id='q_94' onclick='q94()'>14</button>&nbsp;";
+                                  "<button class='pal' id='q_94' onclick='q94()'>94</button>&nbsp;";
                                 test2.innerHTML +=
-                                  "<button class='pal' id='q_95' onclick='q95()'>15</button>&nbsp;";
+                                  "<button class='pal' id='q_95' onclick='q95()'>95</button>&nbsp;";
                                 test2.innerHTML +=
-                                  "<button class='pal' id='q_96' onclick='q96()'>16</button>&nbsp;";
+                                  "<button class='pal' id='q_96' onclick='q96()'>96</button>&nbsp;";
                                 test2.innerHTML +=
-                                  "<button class='pal' id='q_97' onclick='q97()'>17</button>&nbsp;";
+                                  "<button class='pal' id='q_97' onclick='q97()'>97</button>&nbsp;";
                                 test2.innerHTML +=
-                                  "<button class='pal' id='q_98' onclick='q98()'>18</button>&nbsp;";
+                                  "<button class='pal' id='q_98' onclick='q98()'>98</button>&nbsp;";
                                 test2.innerHTML +=
-                                  "<button class='pal' id='q_99' onclick='q99()'>19</button>&nbsp;";
+                                  "<button class='pal' id='q_99' onclick='q99()'>99</button>&nbsp;";
                                 test2.innerHTML +=
-                                  "<button class='pal' id='q_100' onclick='q100()'>20</button>&nbsp;";
+                                  "<button class='pal' id='q_100' onclick='q100()'>100</button>&nbsp;";
 
 
 
@@ -1651,7 +1649,6 @@
                             }
                             function chck() {
                               radiocheck[pos] = 1;
-                              checkAnswer();
 
                             }
                             //for getting no. of correct answers,wrong answers and for coloring the button (red,green) by ids.
@@ -1751,9 +1748,6 @@
                             function backBtn() {
                               if (pos >= 0) {
                                 pos--;
-                                renderQuestion();
-                              }
-                              else if (pos = 0) {
                                 renderQuestion();
                               }
 
@@ -2485,6 +2479,12 @@
                                 }
                               }
                             }
+
+                            function disableBackToTestButton() {
+                              var backButton = document.getElementById("backtest");
+                              backButton.disabled = true
+                              backButton.removeAttribute("onclick");
+                            }
                             function start() {
                               var checkbox1 = document.getElementById("chekk");
                               var checkbox2 = document.getElementById("chek");
@@ -2593,10 +2593,14 @@
 
                               if (sec < 1) {
                                 min--;
+                                sec = 59; // Reset seconds to 59 when it reaches 0
                               }
 
-                              if ((min < 1 && secs < 1) || pos >= questions.length) {
-                                clearTimeout(timer);
+                              if (secs < 0) {
+                                clearTimeout(timer); 
+                                return;
+                              }
+                              if ( pos >= questions.length) {
                                 if (!submitCalled) {
                                   nosub = 1;
                                   document.getElementById(
@@ -2604,7 +2608,19 @@
                                   ).style.display = "none";
                                   submitCalled = true;
                                   Subquestion()
+
+                                  // var backButton = document.getElementById("backtest");
+                                  // backButton.disabled = true;
+
+                                  // // Remove the onclick attribute from the "Go Back To Test" button
+                                  // backButton.removeAttribute("onclick");
                                 }
+                              }
+
+                              if ((min < 1 && secs < 1)) {
+                                clearTimeout(timer);
+                                disableBackToTestButton()
+                                Subquestion()
                               }
 
                               secs--;
@@ -2706,9 +2722,10 @@
                                   <button class="NextQ" onclick="checkAnswer()" type="button">
                                     Select And Next Question
                                   </button>
-                                    <button type="submit" class="SubmitQ" id="Sub" title="Click on Done" onclick="Subquestion()">
-                                      Done
-                                    </button>
+                                  <button type="submit" class="SubmitQ" id="Sub" title="Click on Done"
+                                    onclick="Subquestion()">
+                                    Done
+                                  </button>
 
 
                                   <div style="clear: both"></div>
@@ -2844,7 +2861,7 @@
         <div class="widget HTML" data-version="2" id="HTML77">
           <div class="widget-content abtU" data-text="Powered by : www.orionstechelite.com">
             <div class="abtT">
-              <h2 class="tl">Shri Labhubhai Trivedi Institue Of Engineering and Technoloy</h2>
+              <h2 class="tl"><a href="https://www.sltiet.edu.in/" target="_blank" style="color: #ffffff;">Shri Labhubhai Trivedi Institue Of Engineering and Technoloy</a></h2>
             </div>
           </div>
         </div>
