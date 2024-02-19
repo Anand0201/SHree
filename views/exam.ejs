@@ -1749,8 +1749,14 @@
                               }
                             }
                             function backBtn() {
-                              pos--;
-                              renderQuestion();
+                              if (pos >= 0) {
+                                pos--;
+                                renderQuestion();
+                              }
+                              else if (pos = 0) {
+                                renderQuestion();
+                              }
+
                             }
                             function maxmBtn() {
                               document.getElementById("max").style.width =
@@ -2700,9 +2706,12 @@
                                   <button class="NextQ" onclick="checkAnswer()" type="button">
                                     Select And Next Question
                                   </button>
-                                  <button class="SubmitQ" id="Sub" title="Click on Done" onclick="Subquestion()">
-                                    Done
-                                  </button>
+                                  <form action="/score" method="post">
+                                    <button type="submit" class="SubmitQ" id="Sub" title="Click on Done" onclick="Subquestion()">
+                                      Done
+                                    </button>
+                                  </form>
+
 
                                   <div style="clear: both"></div>
                                 </div>
@@ -2757,11 +2766,11 @@
                                 <br />
                                 <p style="padding-left: 80px;">
                                   <i class="fa fa-caret-right"></i>
-                                  <form action="/score" method="post">
+                                <form action="/score" method="post">
                                   <button type="submit" id="submittest" onclick="submitbtn()">
                                     Finish And Submit The Test
                                   </button>
-                                  </form>
+                                </form>
                                 </p>
                               </div>
                               <br /><br />
