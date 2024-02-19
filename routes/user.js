@@ -26,6 +26,8 @@ router.post("/register", async (req, res) => {
     phone: req.body.phone,
     email: req.body.email,
     institute: req.body.institute,
+    interest: req.body.interest,
+    hobby: req.body.hobby,
     grade: req.body.grade,
     });
     const new_user = await user.save()

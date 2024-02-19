@@ -14,8 +14,15 @@ const userschema =new mongoose.Schema({
         type:String,
         required:true
     },
-
     institute:{
+        type:String,
+        required:true
+    },
+    interest:{
+        type:String,
+        required:true
+    },
+    hobby:{
         type:String,
         required:true
     },
