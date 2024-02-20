@@ -394,6 +394,7 @@
         .panel-primary {
           margin-top: 30%;
         }
+  
       }
       .drK .panel-primary {
         background: #2d2d30;
@@ -5071,6 +5072,13 @@
         .fotIn > *:first-child {
           width: calc(100% - 30px);
         }
+        #maxm{
+          display: none;
+        }
+        #minm{
+          display: block;
+        }
+        
       }
       
       /* Keyframes Animation */
@@ -8457,7 +8465,7 @@
           display: block;
           width: 35%;
           height: 573px;
-      
+
           text-align: left;
           padding: 5px;
           overflow: auto;
