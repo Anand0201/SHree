@@ -5073,10 +5073,10 @@
           width: calc(100% - 30px);
         }
         #maxm{
-          display: none;
+          display: block;
         }
         #minm{
-          display: block;
+          display: none;
         }
         
       }

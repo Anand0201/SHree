@@ -1649,6 +1649,7 @@
                             }
                             function chck() {
                               radiocheck[pos] = 1;
+                              checkAnswer()
 
                             }
                             //for getting no. of correct answers,wrong answers and for coloring the button (red,green) by ids.
@@ -2466,6 +2467,7 @@
                                   +questions.length - overall;
                                 // _("ansQ2").innerHTML =+ overall;
                                 // _("noansQ2").innerHTML =+ questions.length - overall;
+                                alert("are you sure?")
                                 var elem =
                                   document.getElementById("reviewshow");
                                 if (elem.requestFullscreen) {
@@ -2645,7 +2647,7 @@
                               </div>
                               <br />
                               <div style="text-align: left;">
-                                <input id="chekk" type="checkbox" /><label for="chekk">You only have 60 minutes for all
+                                <input id="chekk" type="checkbox" /><label for="chekk">You only have 90 minutes for all
                                   100 questions.</label><br />
 
                                 <br />
