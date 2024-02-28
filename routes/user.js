@@ -55,7 +55,7 @@ router.post("/login", async (req, res) => {
   try {
     const email = req.body.email;
     const password = req.body.password;
-    const user = await userschema.findOne({ email });
+    const user = await user1schema.findOne({ email });
 
     if (user && bcrypt.compareSync(password, user.password)) {
       res.redirect("/quiz");
