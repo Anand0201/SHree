@@ -1144,10 +1144,13 @@
                               }
                             }
                             function backBtn() {
-                              if (pos >= 0) {
-                                pos--;
-                                renderQuestion();
-                              }
+  if (pos > 0) {
+    pos--; 
+    renderQuestion();
+  } else {
+    alert("This is the first question.");
+  }
+}
 
                             }
                             function maxmBtn() {
