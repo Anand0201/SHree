@@ -1,4 +1,4 @@
-const { userschema } = require("../models/user");
+const { user1schema } = require("../models/user");
 const express = require("express");
 const router = express.Router();
 const { name } = require("ejs");
@@ -15,13 +15,13 @@ router.get('/quiz' , (req, res) => {
 
 
 router.get('/admin', async (req, res) => {
-  const data = await userschema.find();
+  const data = await user1schema.find();
   res.render( "admin",{ data } );
 })
 
 router.post("/register", async (req, res) => {
 
-  const user = new userschema({
+  const user = new user1schema({
     name: req.body.name,
     phone: req.body.phone,
     email: req.body.email,
@@ -41,7 +41,7 @@ router.post("/score", async (req, res) => {
   const { score } = req.body;
   const examcore = score;
   const update = { $set: { examscore: examcore } };
-  await userschema.findByIdAndUpdate(id, update)
+  await user1schema.findByIdAndUpdate(id, update)
   .then(updatedDocument => {
     console.log('Document updated successfully:', updatedDocument);
   })
