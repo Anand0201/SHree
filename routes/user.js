@@ -59,7 +59,7 @@ async function addNameToCertificate(name) {
   
   const pdfBytes = await pdfDoc.save();
   const outputFilename = `${name}-certificate.pdf`;
-  const pdfPath123 = path.join(__dirname, `../opt/render/project/src/public/images/${outputFilename}`);
+  const pdfPath123 = path.join(__dirname, `../public/images/${outputFilename}`);
   fs.writeFileSync(pdfPath123, pdfBytes);
 }
 
@@ -77,7 +77,7 @@ router.post("/score", async (req, res) => {
   });
   const userinfo = await user1schema.findById(id);
   addNameToCertificate(userinfo.name);
-  const cerpath = path.join(__dirname, `../opt/render/project/src/public/images/${userinfo.name}-certificate.pdf`);
+  const cerpath = path.join(__dirname, `../public/images/${userinfo.name}-certificate.pdf`);
   res.download(cerpath);
   console.log(examcore);
 })
