@@ -1,7 +1,10 @@
 const { user1schema } = require("../models/user");
 const express = require("express");
 const router = express.Router();
+const path = require('path');
+const { PDFDocument, rgb } = require('pdf-lib');
 const { name } = require("ejs");
+const fs = require('fs');
 router.use(express.json());
 
 router.get('/', (req, res) => {
@@ -11,8 +14,6 @@ router.get('/', (req, res) => {
 router.get('/quiz' , (req, res) => {
    res.render("exam2");
 });
-
-
 
 router.get('/admin', async (req, res) => {
   const data = await user1schema.find();
@@ -36,6 +37,32 @@ router.post("/register", async (req, res) => {
     
 });
 
+async function addNameToCertificate(name) {
+  const pdfPath = path.join(__dirname, "../public/images/certificate.pdf");
+
+  const existingPdfBytes = fs.readFileSync(pdfPath);
+
+  // const existingPdfBytes = fs.readFileSync('images/certificate.pdf');
+  // Load a PDFDocument from the existing PDF bytes
+  const pdfDoc = await PDFDocument.load(existingPdfBytes);
+  
+  
+  const pages = pdfDoc.getPages();
+  const firstPage = pages[0];
+  
+  firstPage.drawText(name, {
+    x: 300, 
+    y: 340, 
+    size: 20,
+    color: rgb(0, 0, 0),
+  });
+  
+  const pdfBytes = await pdfDoc.save();
+  const outputFilename = `${name}-certificate.pdf`;
+  const pdfPath123 = path.join(__dirname, `../public/images/${outputFilename}`);
+  fs.writeFileSync(pdfPath123, pdfBytes);
+}
+
 router.post("/score", async (req, res) => {
   const id = req.session.userid;
   const { score } = req.body;
@@ -48,6 +75,10 @@ router.post("/score", async (req, res) => {
   .catch(error => {
     console.error('Error updating document:', error);
   });
+  const userinfo = await user1schema.findById(id);
+  addNameToCertificate(userinfo.name);
+  const cerpath = path.join(__dirname, `../public/images/${userinfo.name}-certificate.pdf`);
+  res.download(cerpath);
   console.log(examcore);
 })
 // router.use((req,res)=>{
