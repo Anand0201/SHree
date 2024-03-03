@@ -37,10 +37,31 @@ router.post("/register", async (req, res) => {
     
 });
 
-async function addNameToCertificate(name) {
+// async function addNameToCertificate(name) {
+ 
+//   // const outputFilename = `${name}-certificate.pdf`;
+//   // const pdfPath123 = path.join(__dirname, `../public/images/${outputFilename}`);
+//   // fs.writeFileSync(pdfPath123, pdfBytes);
+// }
+
+router.post("/score", async (req, res) => {
+  const id = req.session.userid;
+  const { score } = req.body;
+  const examcore = score;
+  const update = { $set: { examscore: examcore } };
+  await user1schema.findByIdAndUpdate(id, update)
+  .then(updatedDocument => {
+    console.log('Document updated successfully:', updatedDocument);
+  })
+  .catch(error => {
+    console.error('Error updating document:', error);
+  });
+  const userinfo = await user1schema.findById(id);
+  const name = userinfo.name;
   const pdfPath = path.join(__dirname, "../public/images/certificate.pdf");
 
   const existingPdfBytes = fs.readFileSync(pdfPath);
+  console.log(existingPdfBytes); 
 
   // const existingPdfBytes = fs.readFileSync('images/certificate.pdf');
   // Load a PDFDocument from the existing PDF bytes
@@ -58,27 +79,14 @@ async function addNameToCertificate(name) {
   });
   
   const pdfBytes = await pdfDoc.save();
-  const outputFilename = `${name}-certificate.pdf`;
-  const pdfPath123 = path.join(__dirname, `../public/images/${outputFilename}`);
-  fs.writeFileSync(pdfPath123, pdfBytes);
-}
-
-router.post("/score", async (req, res) => {
-  const id = req.session.userid;
-  const { score } = req.body;
-  const examcore = score;
-  const update = { $set: { examscore: examcore } };
-  await user1schema.findByIdAndUpdate(id, update)
-  .then(updatedDocument => {
-    console.log('Document updated successfully:', updatedDocument);
-  })
-  .catch(error => {
-    console.error('Error updating document:', error);
+  res.writeHead(200, {
+    'Content-Disposition': `attachment; filename="${name}-certificate.pdf"`,
+    'Content-Type': 'application/pdf',
+    'Content-Length': pdfBytes.length
   });
-  const userinfo = await user1schema.findById(id);
-  addNameToCertificate(userinfo.name);
-  const cerpath = path.join(__dirname, `../public/images/${userinfo.name}-certificate.pdf`);
-  res.download(cerpath);
+
+  res.end(pdfBytes);
+  // const cerpath = path.join(__dirname, `../public/images/${userinfo.name}-certificate.pdf`);
   console.log(examcore);
 })
 // router.use((req,res)=>{
