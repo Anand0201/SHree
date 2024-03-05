@@ -64,6 +64,7 @@ router.post("/score", async (req, res) => {
   } catch (error) {
     console.error('Error retrieving user name:', error);
     name = 'Unknown'; // Default to 'Unknown' if name retrieval fails
+  }
   const pdfPath = path.join(__dirname, "../public/images/certificate.pdf");
 
   const existingPdfBytes = fs.readFileSync(pdfPath);
