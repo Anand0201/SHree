@@ -56,8 +56,14 @@ router.post("/score", async (req, res) => {
   .catch(error => {
     console.error('Error updating document:', error);
   });
-  const userinfo = await user1schema.findById(id);
-  const name = userinfo.name;
+  let name = '';
+
+  try {
+    const userinfo = await user1schema.findById(id);
+    name = userinfo.name;
+  } catch (error) {
+    console.error('Error retrieving user name:', error);
+    name = 'Unknown'; // Default to 'Unknown' if name retrieval fails
   const pdfPath = path.join(__dirname, "../public/images/certificate.pdf");
 
   const existingPdfBytes = fs.readFileSync(pdfPath);
