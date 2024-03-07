@@ -36,4 +36,4 @@ const user1schema =new mongoose.Schema({
     }
 });
 
-exports.user1schema = mongoose.model('Usertest2', user1schema);
+exports.user1schema = mongoose.model('Usertest3', user1schema);
